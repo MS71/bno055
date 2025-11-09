@@ -1,4 +1,5 @@
-version: 1.0.0
+name: adithya-187326/bno055
+version: 1.0.1
 
 description: BNO055 I2C IMU Driver
 
