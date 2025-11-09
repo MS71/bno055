@@ -3,31 +3,27 @@ name: Upload BNO055 Component to IDF Registry
 on:
   push:
     tags:
-      - "[0-9]+.[0-9]+.[0-9]+" # triggers on tag push, e.g. 1.0.1
+      - '[0-9]+.[0-9]+.[0-9]+'
   workflow_dispatch:
 
 jobs:
   upload:
     runs-on: ubuntu-latest
     permissions:
-      id-token: write # required for OIDC authentication with the IDF registry
+      id-token: write
       contents: read
 
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Verify component manifest
-        run: |
-          if [ ! -f ./idf_component.yml ]; then
-            echo "Error: idf_component.yml not found in repository root."
-            exit 1
-          fi
-          echo "idf_component.yml found:"
-          cat ./idf_component.yml
+      - name: Validate manifest presence
+        run: test -f ./idf_component.yml
 
-      - name: Upload component to ESP-IDF Registry
-        uses: espressif/upload-components@v1
+      - name: Upload to ESP Component Registry
+        uses: espressif/upload-components-ci-action@v2
         with:
-          path: . # component root (repository root)
-          version: ${{ github.ref_name }} # tag name used as version (e.g. 1.0.1)
+          namespace: adithya-187326
+          components: |
+            - path: .
+              version: ${{ github.ref_name }}
