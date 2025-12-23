@@ -8,6 +8,7 @@ idf_component_register(
         "src"            # private headers, if any
     REQUIRES
         log              # visible to dependents
+        driver
 )
 
 target_compile_definitions(${COMPONENT_LIB} PUBLIC BNO055_VERSION_STR=\"1.0.0\")
