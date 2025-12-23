@@ -8,10 +8,6 @@ idf_component_register(
         "src"            # private headers, if any
     REQUIRES
         log              # visible to dependents
-        esp_driver_i2c
-        esp_driver_gpio
-        esp_common
-        freertos
 )
 
 target_compile_definitions(${COMPONENT_LIB} PUBLIC BNO055_VERSION_STR=\"1.0.0\")
