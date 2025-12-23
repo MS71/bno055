@@ -8,6 +8,8 @@ idf_component_register(
         "src"            # private headers, if any
     REQUIRES
         log              # visible to dependents
+
+    PRIV_REQUIRES
         driver
 )
 
